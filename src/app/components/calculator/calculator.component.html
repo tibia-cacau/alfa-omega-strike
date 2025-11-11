@@ -213,4 +213,300 @@ Exemplo:
       </div>
     </div>
   </div>
+
+  <!-- Scenarios Section -->
+  <div class="scenarios-section">
+    <button class="toggle-scenarios-btn" (click)="toggleScenarios()">
+      {{ showScenarios ? "▼" : "▶" }} 🎯 Análise Comparativa: Alfa vs Ômega
+    </button>
+
+    <div class="scenarios-content" *ngIf="showScenarios">
+      <div class="scenarios-card">
+        <h4>📊 COMPARAÇÃO DE DANO EXTRA (APENAS O BÔNUS)</h4>
+        <p class="info-note">
+          💡 <strong>Como funciona:</strong> Aqui comparamos apenas o
+          <strong>dano EXTRA</strong> que cada proficiency proporciona. Por
+          exemplo, se seu dano médio é 400: Alfa adiciona
+          <strong>64 de dano extra</strong> (16% de 400), mas Ômega pode
+          adicionar <strong>muito mais</strong> porque ativa em vários hits no
+          final da luta!
+        </p>
+
+        <!-- Scenario 1 -->
+        <div class="scenario-group">
+          <h5>1. MONSTROS COM HP BAIXO (2.500 - 4.000) | Dano: 400</h5>
+          <div class="scenario-table">
+            <div class="table-header">
+              <span>HP</span>
+              <span>Dano Base</span>
+              <span>Alfa Extra</span>
+              <span>Ômega Extra</span>
+              <span>Melhor</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>2.500</span>
+              <span>400</span>
+              <span>64</span>
+              <span>52</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>3.000</span>
+              <span>400</span>
+              <span>64</span>
+              <span>52</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>3.500</span>
+              <span>400</span>
+              <span>64</span>
+              <span>52</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>4.000</span>
+              <span>400</span>
+              <span>64</span>
+              <span>52</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="scenario-group">
+          <h5>2. HP MODERADO (5.000) - VARIAÇÃO DE DANO</h5>
+          <div class="scenario-table">
+            <div class="table-header">
+              <span>Dano Base</span>
+              <span>Alfa Extra</span>
+              <span>Ômega Extra</span>
+              <span>Diferença</span>
+              <span>Melhor</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>300</span>
+              <span>48</span>
+              <span>98</span>
+              <span>+104%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>400</span>
+              <span>64</span>
+              <span>104</span>
+              <span>+63%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>500</span>
+              <span>80</span>
+              <span>65</span>
+              <span>-19%</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>600</span>
+              <span>96</span>
+              <span>117</span>
+              <span>+22%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>700</span>
+              <span>112</span>
+              <span>91</span>
+              <span>-19%</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>800</span>
+              <span>128</span>
+              <span>104</span>
+              <span>-19%</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario-group">
+          <h5>3. HP ALTO (8.000) - DANO ALTO</h5>
+          <div class="scenario-table">
+            <div class="table-header">
+              <span>Dano Base</span>
+              <span>HP</span>
+              <span>Alfa Extra</span>
+              <span>Ômega Extra</span>
+              <span>Melhor</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>800</span>
+              <span>8.000</span>
+              <span>128</span>
+              <span>104</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+            <div class="table-row alfa-winner">
+              <span>1.000</span>
+              <span>8.000</span>
+              <span>160</span>
+              <span>130</span>
+              <span class="highlight-alfa">ALFA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 4 -->
+        <div class="scenario-group">
+          <h5>4. HP MUITO ALTO (10.000) - VARIAÇÃO DE DANO</h5>
+          <div class="scenario-table">
+            <div class="table-header">
+              <span>Dano Base</span>
+              <span>Alfa Extra</span>
+              <span>Ômega Extra</span>
+              <span>Diferença</span>
+              <span>Melhor</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>300</span>
+              <span>96</span>
+              <span>176</span>
+              <span>+83%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>400</span>
+              <span>128</span>
+              <span>182</span>
+              <span>+42%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>500</span>
+              <span>80</span>
+              <span>163</span>
+              <span>+104%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>600</span>
+              <span>96</span>
+              <span>195</span>
+              <span>+103%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>700</span>
+              <span>112</span>
+              <span>182</span>
+              <span>+63%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+            <div class="table-row omega-winner">
+              <span>800</span>
+              <span>128</span>
+              <span>208</span>
+              <span>+63%</span>
+              <span class="highlight-omega">ÔMEGA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conclusion Box -->
+        <div class="conclusion-box">
+          <h5>🎯 CONCLUSÃO DA ANÁLISE</h5>
+          <div class="conclusion-content">
+            <div class="analysis-text">
+              <h6>⚖️ Equilibro entre as Proficiencies</h6>
+              <p>
+                Com a análise do <strong>dano EXTRA</strong> (não o dano total),
+                vemos que a competição é muito mais equilibrada! Agora
+                conseguimos ver claramente quando cada proficiency se destaca.
+              </p>
+
+              <div class="comparison-boxes">
+                <div class="comparison-item alfa-item">
+                  <strong>⚡ ALFA STRIKE (16%)</strong>
+                  <ul>
+                    <li><strong>Melhor em:</strong> HP baixo (2.500-4.000)</li>
+                    <li><strong>Melhor em:</strong> Dano alto (700-1.000)</li>
+                    <li>Ativa quando HP > 95% (início)</li>
+                    <li>
+                      ✅ Dano extra constante:
+                      <strong>16% do seu dano base</strong>
+                    </li>
+                    <li>
+                      📊 Exemplo: Dano 800 = <strong>128 de bônus</strong>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="comparison-item omega-item">
+                  <strong>🎯 ÔMEGA STRIKE (6.5%)</strong>
+                  <ul>
+                    <li><strong>Melhor em:</strong> HP alto (10.000+)</li>
+                    <li>
+                      <strong>Melhor em:</strong> Dano baixo/médio (300-600)
+                    </li>
+                    <li>Ativa quando HP < 30% (final)</li>
+                    <li>
+                      ✅ Acumula dano extra em <strong>vários hits</strong>
+                    </li>
+                    <li>
+                      📊 Exemplo: Dano 400 em HP 10k =
+                      <strong>182 de bônus</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="verdict-box">
+                <h6>✅ GUIA DE DECISÃO</h6>
+
+                <div class="decision-table">
+                  <div class="decision-row">
+                    <strong>🟢 Use ALFA STRIKE quando:</strong>
+                    <ul>
+                      <li>
+                        Monstros com HP entre <strong>2.500 - 8.000</strong>
+                      </li>
+                      <li>Seu dano médio é <strong>alto (700+)</strong></li>
+                      <li>Battles rápidas (poucos hits)</li>
+                      <li>
+                        Quer garantir <strong>dano extra fixo</strong> sempre
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="decision-row">
+                    <strong>🔴 Use ÔMEGA STRIKE quando:</strong>
+                    <ul>
+                      <li>Monstros com HP <strong>10.000+</strong></li>
+                      <li>
+                        Seu dano médio é <strong>baixo/médio (300-600)</strong>
+                      </li>
+                      <li>Battles longas (muitos hits)</li>
+                      <li>
+                        Quer maximizar dano total em
+                        <strong>bosses/raids</strong>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <p class="recommendation-final">
+                  💡 <strong>Recomendação Geral:</strong> A escolha depende do
+                  seu <strong>estilo de hunt</strong>! Alfa é mais consistente e
+                  previsível. Ômega tem potencial maior em fights longos. Use a
+                  calculadora acima com seus valores reais para decidir!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

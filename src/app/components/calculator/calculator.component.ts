@@ -23,6 +23,9 @@ export class CalculatorComponent implements OnInit {
   showServerLog: boolean = false;
   parsedStats: any = null;
 
+  // Scenarios
+  showScenarios: boolean = false;
+
   constructor(
     private calculator: DamageCalculatorService,
     private logParser: ServerLogParserService,
@@ -74,6 +77,10 @@ export class CalculatorComponent implements OnInit {
 
   toggleServerLog(): void {
     this.showServerLog = !this.showServerLog;
+  }
+
+  toggleScenarios(): void {
+    this.showScenarios = !this.showScenarios;
   }
 
   parseServerLog(): void {

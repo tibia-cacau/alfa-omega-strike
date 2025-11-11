@@ -35,7 +35,7 @@ export class DamageCalculatorService {
   ): DamageResult {
     let currentHp = monsterHp;
     let totalDamage = 0;
-    let bonusDamage = 0;
+    let bonusDamage = 0; // Agora representa apenas o DANO EXTRA do bônus
     let iterations = 0;
     const maxIterations = 10000;
 
@@ -45,8 +45,9 @@ export class DamageCalculatorService {
       let dmg = baseDamage;
 
       if (conditionCheck(hpRatio)) {
-        dmg *= 1 + bonusPercent / 100;
-        bonusDamage += dmg;
+        const extraDamage = baseDamage * (bonusPercent / 100); // Apenas o bônus extra
+        dmg += extraDamage;
+        bonusDamage += extraDamage; // Soma apenas o dano extra, não o total
       }
 
       totalDamage += dmg;
