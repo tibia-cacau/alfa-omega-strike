@@ -1,0 +1,52 @@
+<div class="app-container">
+  <header>
+    <div class="header-content">
+      <div class="header-icons">
+        <div class="icon-frame">
+          <img
+            src="assets/images/Proficiency_Type_Alpha_Dmg.gif"
+            alt="Alfa Strike"
+            class="header-icon"
+          />
+        </div>
+        <div class="icon-frame">
+          <img
+            src="assets/images/Proficiency_Type_Omega_Dmg.gif"
+            alt="Ômega Strike"
+            class="header-icon"
+          />
+        </div>
+      </div>
+      <div class="header-text">
+        <h1>Comparador Alfa vs Ômega Strike</h1>
+        <p class="subtitle">Análise de dano com bônus para Tibia</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <a routerLink="/calculator" routerLinkActive="active">
+      <span class="tab-icon">🎯</span>
+      Calculadora
+    </a>
+    <a routerLink="/bonus-damage" routerLinkActive="active">
+      <span class="tab-icon">📊</span>
+      Gráfico Dano Bônus
+    </a>
+    <a routerLink="/bonus-diff" routerLinkActive="active">
+      <span class="tab-icon">📈</span>
+      Gráfico Diferença
+    </a>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <p>
+      Comparador Alfa vs Ômega Strike - Análise baseada em cálculos de dano com
+      overkill
+    </p>
+  </footer>
+</div>

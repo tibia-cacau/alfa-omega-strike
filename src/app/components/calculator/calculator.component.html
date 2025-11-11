@@ -1,0 +1,216 @@
+<div class="calculator-container">
+  <h2>Calculadora Alfa vs Ômega Strike</h2>
+
+  <!-- Server Log Section -->
+  <div class="server-log-section">
+    <button class="toggle-btn" (click)="toggleServerLog()">
+      {{ showServerLog ? "▼" : "▶" }} Analisar Server Log do Tibia
+    </button>
+
+    <div class="server-log-content" *ngIf="showServerLog">
+      <p class="info-text">
+        Cole aqui o server log do Tibia. O sistema vai identificar
+        automaticamente seus danos e calcular a média,
+        <strong>excluindo danos de charms</strong>.
+      </p>
+
+      <textarea
+        [(ngModel)]="serverLog"
+        (ngModelChange)="parseServerLog()"
+        placeholder="Cole aqui seu server log do Tibia...
+Exemplo:
+14:37:27 A destroyer loses 340 hitpoints due to your attack.
+14:37:27 A dark torturer loses 397 hitpoints due to your attack. (freeze charm)
+14:37:27 A dark torturer loses 414 hitpoints due to your attack."
+        rows="10"
+        class="server-log-textarea"
+      >
+      </textarea>
+
+      <div class="server-log-actions">
+        <button class="btn-secondary" (click)="clearServerLog()">Limpar</button>
+        <button
+          class="btn-primary"
+          (click)="useAverageDamage()"
+          [disabled]="!parsedStats || parsedStats.average === 0"
+        >
+          Usar Média Calculada
+        </button>
+      </div>
+
+      <div class="stats-display" *ngIf="parsedStats && parsedStats.count > 0">
+        <h4>📊 Estatísticas do Server Log</h4>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Média de Dano:</span>
+            <span class="stat-value highlight">{{ parsedStats.average }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total de Hits:</span>
+            <span class="stat-value">{{ parsedStats.count }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Dano Mínimo:</span>
+            <span class="stat-value">{{ parsedStats.min }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Dano Máximo:</span>
+            <span class="stat-value">{{ parsedStats.max }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Mediana:</span>
+            <span class="stat-value">{{ parsedStats.median }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Critical Hits:</span>
+            <span class="stat-value">{{ parsedStats.criticalHits }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Hits Normais:</span>
+            <span class="stat-value">{{ parsedStats.normalHits }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Charms Excluídos:</span>
+            <span class="stat-value excluded">{{ parsedStats.excluded }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="stats-display warning"
+        *ngIf="
+          parsedStats && parsedStats.count === 0 && serverLog.trim() !== ''
+        "
+      >
+        <p>
+          ⚠️ Nenhum dano encontrado no server log. Verifique se o formato está
+          correto.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="inputs-section">
+    <div class="input-group">
+      <label for="baseDamage">Dano Médio do Personagem:</label>
+      <input
+        type="number"
+        id="baseDamage"
+        [(ngModel)]="baseDamage"
+        (ngModelChange)="onInputChange()"
+        min="1"
+        step="100"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="monsterHp">HP do Monstro:</label>
+      <input
+        type="number"
+        id="monsterHp"
+        [(ngModel)]="monsterHp"
+        (ngModelChange)="onInputChange()"
+        min="1"
+        step="500"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="alfaBonus">Bônus Alfa (%):</label>
+      <input
+        type="number"
+        id="alfaBonus"
+        [(ngModel)]="alfaBonus"
+        (ngModelChange)="onInputChange()"
+        min="0"
+        step="0.5"
+      />
+    </div>
+
+    <div class="input-group">
+      <label for="omegaBonus">Bônus Ômega (%):</label>
+      <input
+        type="number"
+        id="omegaBonus"
+        [(ngModel)]="omegaBonus"
+        (ngModelChange)="onInputChange()"
+        min="0"
+        step="0.5"
+      />
+    </div>
+  </div>
+
+  <div
+    class="recommendation-section"
+    [ngClass]="{
+      omega: recommendation.includes('ÔMEGA'),
+      alfa: recommendation.includes('ALFA'),
+      empate: recommendation.includes('EMPATE')
+    }"
+  >
+    <div class="icon-frame" *ngIf="recommendation.includes('ALFA')">
+      <img
+        src="assets/images/Proficiency_Type_Alpha_Dmg.gif"
+        alt="Alfa Strike Recomendado"
+        class="recommendation-icon"
+      />
+    </div>
+    <div class="icon-frame" *ngIf="recommendation.includes('ÔMEGA')">
+      <img
+        src="assets/images/Proficiency_Type_Omega_Dmg.gif"
+        alt="Ômega Strike Recomendado"
+        class="recommendation-icon"
+      />
+    </div>
+    <div class="recommendation-content">
+      <h3>Recomendação:</h3>
+      <p class="recommendation-text">{{ recommendation }}</p>
+    </div>
+  </div>
+
+  <div class="details-section">
+    <div class="result-card alfa-card">
+      <div class="card-header">
+        <div class="icon-frame">
+          <img
+            src="assets/images/Proficiency_Type_Alpha_Dmg.gif"
+            alt="Alfa Strike"
+            class="card-icon"
+          />
+        </div>
+        <h4>Alfa Strike ({{ alfaBonus }}% quando HP > 95%)</h4>
+      </div>
+      <div class="stats" *ngIf="alfaResult">
+        <p>
+          <strong>Dano Total:</strong> {{ alfaResult.totalDamage.toFixed(0) }}
+        </p>
+        <p>
+          <strong>Dano com Bônus:</strong>
+          {{ alfaResult.bonusDamage.toFixed(0) }}
+        </p>
+      </div>
+    </div>
+
+    <div class="result-card omega-card">
+      <div class="card-header">
+        <div class="icon-frame">
+          <img
+            src="assets/images/Proficiency_Type_Omega_Dmg.gif"
+            alt="Ômega Strike"
+            class="card-icon"
+          />
+        </div>
+        <h4>Ômega Strike ({{ omegaBonus }}% quando HP < 30%)</h4>
+      </div>
+      <div class="stats" *ngIf="omegaResult">
+        <p>
+          <strong>Dano Total:</strong> {{ omegaResult.totalDamage.toFixed(0) }}
+        </p>
+        <p>
+          <strong>Dano com Bônus:</strong>
+          {{ omegaResult.bonusDamage.toFixed(0) }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
