@@ -4,9 +4,14 @@ import {
 } from '../../services/damage-calculator.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { Chart } from 'chart.js';
 import { ChartConfiguration } from 'chart.js';
 import { SharedStateService } from '../../services/shared-state.service';
 import { Subscription } from 'rxjs';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+// Registrar o plugin de anotação
+Chart.register(annotationPlugin);
 
 @Component({
   selector: 'app-bonus-diff-chart',
@@ -32,6 +37,30 @@ export class BonusDiffChartComponent implements OnInit, OnDestroy {
         text: 'Diferença % Dano Com Bônus (Ômega vs Alfa)',
         font: {
           size: 18,
+        },
+      },
+      annotation: {
+        annotations: {
+          line1: {
+            type: 'line',
+            xMin: '14000',
+            xMax: '14000',
+            borderColor: '#ff9900',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            label: {
+              display: true,
+              content: ['Hunt Solo  ← | → Hunt Party'],
+              position: 'start',
+              backgroundColor: 'rgba(255, 153, 0, 0.8)',
+              color: '#fff',
+              font: {
+                size: 10,
+                weight: 'bold',
+              },
+              padding: 6,
+            },
+          },
         },
       },
     },
