@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { DamageCalculatorService } from '../../services/damage-calculator.service';
 import { ServerLogParserService } from '../../services/server-log-parser.service';
+import { SharedStateService } from '../../services/shared-state.service';
 
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
 })
-export class CalculatorComponent {
+export class CalculatorComponent implements OnInit {
   baseDamage: number = 400;
   monsterHp: number = 10000;
   alfaBonus: number = 16.0;
@@ -23,8 +25,17 @@ export class CalculatorComponent {
 
   constructor(
     private calculator: DamageCalculatorService,
-    private logParser: ServerLogParserService
-  ) {
+    private logParser: ServerLogParserService,
+    private sharedState: SharedStateService
+  ) {}
+
+  ngOnInit(): void {
+    // Carregar estado inicial do serviço compartilhado
+    const state = this.sharedState.getState();
+    this.baseDamage = state.baseDamage;
+    this.monsterHp = state.monsterHp;
+    this.alfaBonus = state.alfaBonus;
+    this.omegaBonus = state.omegaBonus;
     this.calculate();
   }
 
@@ -50,6 +61,13 @@ export class CalculatorComponent {
   onInputChange(): void {
     // Validação básica
     if (this.baseDamage > 0 && this.monsterHp > 0) {
+      // Atualizar estado compartilhado
+      this.sharedState.updateState({
+        baseDamage: this.baseDamage,
+        monsterHp: this.monsterHp,
+        alfaBonus: this.alfaBonus,
+        omegaBonus: this.omegaBonus,
+      });
       this.calculate();
     }
   }
@@ -68,6 +86,8 @@ export class CalculatorComponent {
 
     if (this.parsedStats && this.parsedStats.average > 0) {
       this.baseDamage = this.parsedStats.average;
+      // Atualizar estado compartilhado quando parsear o log
+      this.sharedState.setBaseDamage(this.baseDamage);
       this.calculate();
     }
   }
@@ -80,6 +100,8 @@ export class CalculatorComponent {
   useAverageDamage(): void {
     if (this.parsedStats && this.parsedStats.average > 0) {
       this.baseDamage = this.parsedStats.average;
+      // Atualizar estado compartilhado
+      this.sharedState.setBaseDamage(this.baseDamage);
       this.calculate();
     }
   }

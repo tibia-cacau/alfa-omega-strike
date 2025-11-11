@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { GraphInterpretationComponent } from './components/graph-interpretation/graph-interpretation.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgModule } from '@angular/core';
     CalculatorComponent,
     BonusDamageChartComponent,
     BonusDiffChartComponent,
+    GraphInterpretationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, BaseChartDirective],
   providers: [provideCharts(withDefaultRegisterables())],

@@ -1,0 +1,139 @@
+.interpretation-section {
+  margin-top: 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f0fe 100%);
+  border-radius: 12px;
+  border-left: 5px solid #667eea;
+  overflow: hidden;
+
+  .toggle-interpretation-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #5568d3;
+    }
+  }
+
+  .interpretation-content {
+    padding: 25px;
+  }
+
+  .interpretation-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    h4 {
+      color: #667eea;
+      margin: 0 0 15px 0;
+      font-size: 18px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+      margin: 0 0 15px 0;
+    }
+
+    ul {
+      color: #555;
+      line-height: 1.8;
+      margin: 0 0 20px 0;
+      padding-left: 25px;
+
+      li {
+        margin-bottom: 8px;
+
+        strong {
+          color: #333;
+        }
+      }
+    }
+
+    .example-box {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+
+      .example-title {
+        font-weight: bold;
+        color: #f57c00;
+        margin: 0 0 15px 0;
+        font-size: 16px;
+      }
+
+      .example-content {
+        display: grid;
+        gap: 15px;
+        margin: 15px 0;
+
+        .example-item {
+          background: white;
+          padding: 12px;
+          border-radius: 4px;
+          border: 1px solid #ffe082;
+          font-size: 14px;
+          line-height: 1.8;
+
+          strong {
+            color: #e65100;
+          }
+        }
+      }
+
+      .example-conclusion {
+        margin: 15px 0 0 0;
+        padding: 10px;
+        background: white;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #2e7d32;
+        border: 1px solid #81c784;
+      }
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+
+      strong {
+        color: #1565c0;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      p {
+        margin: 0;
+        color: #424242;
+      }
+    }
+
+    .conclusion {
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0 0 0;
+      font-size: 15px;
+      text-align: center;
+
+      strong {
+        color: #2e7d32;
+      }
+    }
+  }
+}

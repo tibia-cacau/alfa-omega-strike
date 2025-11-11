@@ -2,16 +2,18 @@ import {
   ComparisonData,
   DamageCalculatorService,
 } from '../../services/damage-calculator.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ChartConfiguration } from 'chart.js';
+import { SharedStateService } from '../../services/shared-state.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-bonus-diff-chart',
   templateUrl: './bonus-diff-chart.component.html',
   styleUrls: ['./bonus-diff-chart.component.scss'],
 })
-export class BonusDiffChartComponent implements OnInit {
+export class BonusDiffChartComponent implements OnInit, OnDestroy {
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [],
     labels: [],
@@ -53,10 +55,34 @@ export class BonusDiffChartComponent implements OnInit {
   alfaBonus: number = 16.0;
   omegaBonus: number = 6.5;
 
-  constructor(private calculator: DamageCalculatorService) {}
+  private subscription: Subscription = new Subscription();
+
+  constructor(
+    private calculator: DamageCalculatorService,
+    private sharedState: SharedStateService
+  ) {}
 
   ngOnInit(): void {
+    // Carregar estado inicial
+    const state = this.sharedState.getState();
+    this.baseDamage = state.baseDamage;
+    this.alfaBonus = state.alfaBonus;
+    this.omegaBonus = state.omegaBonus;
     this.updateChart();
+
+    // Inscrever-se nas mudanças de estado
+    this.subscription.add(
+      this.sharedState.state$.subscribe((state) => {
+        this.baseDamage = state.baseDamage;
+        this.alfaBonus = state.alfaBonus;
+        this.omegaBonus = state.omegaBonus;
+        this.updateChart();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   updateChart(): void {
@@ -109,11 +135,16 @@ export class BonusDiffChartComponent implements OnInit {
 
   onBaseDamageChange(): void {
     if (this.baseDamage > 0) {
+      this.sharedState.setBaseDamage(this.baseDamage);
       this.updateChart();
     }
   }
 
   onBonusChange(): void {
+    this.sharedState.updateState({
+      alfaBonus: this.alfaBonus,
+      omegaBonus: this.omegaBonus,
+    });
     this.updateChart();
   }
 }
