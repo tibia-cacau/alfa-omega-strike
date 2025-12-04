@@ -10,21 +10,24 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/comparador",
+      "sourceRoot": "projects/comparador/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/comparador",
-            "index": "src/index.html",
-            "main": "src/main.ts",
+            "index": "projects/comparador/src/index.html",
+            "main": "projects/comparador/src/main.ts",
             "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/comparador/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "projects/comparador/src/favicon.ico",
+              "projects/comparador/src/assets"
+            ],
+            "styles": ["projects/comparador/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -76,10 +79,13 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "projects/comparador/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "projects/comparador/src/favicon.ico",
+              "projects/comparador/src/assets"
+            ],
+            "styles": ["projects/comparador/src/styles.scss"],
             "scripts": []
           }
         }
