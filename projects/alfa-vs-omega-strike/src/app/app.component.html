@@ -1,0 +1,24 @@
+<div class="app-container">
+  <nav class="tabs">
+    <a
+      routerLink="./"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span class="tab-icon">🎯</span>
+      Calculadora
+    </a>
+    <a routerLink="./bonus-damage" routerLinkActive="active">
+      <span class="tab-icon">📊</span>
+      Gráfico Dano Bônus
+    </a>
+    <a routerLink="./bonus-diff" routerLinkActive="active">
+      <span class="tab-icon">📈</span>
+      Gráfico Diferença
+    </a>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

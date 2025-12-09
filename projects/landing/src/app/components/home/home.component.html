@@ -1,0 +1,15 @@
+<main class="main-content">
+  <div class="app-cards">
+    <div class="app-card" *ngFor="let card of appCards">
+      <div
+        class="card-icon"
+        [class.with-border]="card.title === 'Alfa vs Omega Strike'"
+      >
+        <img [src]="card.icon" [alt]="card.title" />
+      </div>
+      <h2>{{ card.title }}</h2>
+      <p>{{ card.description }}</p>
+      <a [routerLink]="card.route" class="btn-primary">{{ card.buttonText }}</a>
+    </div>
+  </div>
+</main>

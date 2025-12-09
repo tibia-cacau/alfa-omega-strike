@@ -1,0 +1,16 @@
+<div class="history-tab">
+  <div class="history-list" *ngIf="historyList.length > 0">
+    <button
+      *ngFor="let item of historyList"
+      class="history-item"
+      [class.selected]="selectedHistory?.key === item.key"
+      (click)="onSelectHistory(item)"
+    >
+      <span>{{ formatTimestamp(item.timestamp) }}</span>
+      <span class="arrow">›</span>
+    </button>
+  </div>
+  <div *ngIf="historyList.length === 0" class="empty-state">
+    <p>Nenhum histórico</p>
+  </div>
+</div>

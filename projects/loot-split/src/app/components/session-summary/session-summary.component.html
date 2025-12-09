@@ -1,0 +1,130 @@
+<div class="summary-panel">
+  <div class="summary-header">
+    <h3>Resumo da Sessão</h3>
+    <button
+      *ngIf="huntData.transactions"
+      class="copy-button"
+      [class.copied]="copiedSummary"
+      (click)="onCopy(getCopyText(), 'summary')"
+      title="Copiar resumo"
+    >
+      <mat-icon *ngIf="!copiedSummary">content_copy</mat-icon>
+      <mat-icon *ngIf="copiedSummary" class="success-icon"
+        >check_circle</mat-icon
+      >
+    </button>
+  </div>
+
+  <div class="summary-content">
+    <!-- Team Session -->
+    <div class="info-group">
+      <div class="info-label">
+        <strong>Sessão em Equipe</strong>
+        <span class="tooltip-hint" [title]="huntData.players?.join(', ')"
+          >ℹ️</span
+        >
+      </div>
+      <div class="info-value">
+        {{ formatTimestamp(huntData.timestamp) }}
+      </div>
+    </div>
+
+    <!-- Transfers -->
+    <div class="info-group">
+      <strong>Transferências</strong>
+      <div
+        *ngIf="huntData.transactions && huntData.transactions.length > 0"
+        class="transfers-table"
+      >
+        <div
+          *ngFor="let transaction of huntData.transactions; let i = index"
+          class="transfer-row"
+        >
+          <span class="transfer-from" [title]="transaction.from">
+            {{ transaction.from }}
+          </span>
+          <span class="transfer-amount">
+            <img
+              src="/assets/images/goldcoin.png"
+              alt="Gold"
+              class="coin-icon"
+            />
+            {{ formatNumber(transaction.amount) }}
+            <span class="transfer-arrow">→</span>
+          </span>
+          <span class="transfer-to" [title]="transaction.to">
+            {{ transaction.to }}
+          </span>
+          <button
+            class="copy-transfer-btn"
+            [class.copied]="copiedTransfers['transfer-' + i]"
+            (click)="
+              onCopy(
+                'transfer ' + transaction.amount + ' to ' + transaction.to,
+                'transfer',
+                'transfer-' + i
+              )
+            "
+            title="Copiar comando"
+          >
+            <mat-icon *ngIf="!copiedTransfers['transfer-' + i]"
+              >content_copy</mat-icon
+            >
+            <mat-icon
+              *ngIf="copiedTransfers['transfer-' + i]"
+              class="success-icon"
+              >check_circle</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+      <div
+        *ngIf="!huntData.transactions || huntData.transactions.length === 0"
+        class="info-value"
+      >
+        Nenhum
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="info-group">
+      <strong>{{ isWaste ? "Gasto Total" : "Lucro Total" }}</strong>
+      <div
+        class="total-chip"
+        *ngIf="huntData.teamReceipt && huntData.playerReceipts"
+      >
+        <img src="/assets/images/goldcoin.png" alt="Gold" class="coin-icon" />
+        <span [class.negative]="isWaste">
+          {{ isWaste ? "-" : "+" }}{{ formatNumber(Math.abs(splittedBalance)) }}
+        </span>
+        <span class="each-text">cada</span>
+      </div>
+      <div
+        *ngIf="!huntData.teamReceipt || !huntData.playerReceipts"
+        class="info-value"
+      >
+        Nenhum
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button
+        *ngIf="activeTab === 1 && selectedHistory"
+        class="action-button delete-button"
+        (click)="deleteHistory.emit()"
+      >
+        🗑️ Excluir
+      </button>
+
+      <button
+        *ngIf="activeTab === 0"
+        class="action-button save-button"
+        [disabled]="isInvalid"
+        (click)="saveToHistory.emit()"
+      >
+        💾 Salvar
+      </button>
+    </div>
+  </div>
+</div>

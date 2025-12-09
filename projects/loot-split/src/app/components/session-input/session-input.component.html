@@ -1,0 +1,14 @@
+<div class="new-session-tab">
+  <label class="textarea-label">
+    Cole os dados da sessão
+    <span class="tooltip-hint">ℹ️</span>
+  </label>
+  <textarea
+    class="session-textarea"
+    [class.error]="isInvalid"
+    [placeholder]="lootSplitService.getDefaultValue()"
+    [value]="rawSession"
+    (input)="onSessionChange($event)"
+    rows="12"
+  ></textarea>
+</div>

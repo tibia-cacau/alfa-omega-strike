@@ -1,0 +1,58 @@
+<div class="loot-split-container">
+  <h2>Divisão de Loot</h2>
+
+  <div class="content-wrapper">
+    <!-- Left Panel: Tabs -->
+    <div class="tabs-panel">
+      <div class="tabs-header">
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 0"
+          (click)="onTabChange(0)"
+        >
+          Nova Sessão
+        </button>
+        <button
+          class="tab-button"
+          [class.active]="activeTab === 1"
+          (click)="onTabChange(1)"
+        >
+          Histórico ({{ historyList.length }})
+        </button>
+      </div>
+
+      <div class="tab-content">
+        <!-- Tab: Nova Sessão -->
+        <app-session-input
+          *ngIf="activeTab === 0"
+          [rawSession]="rawNewSession"
+          [isInvalid]="isInvalid"
+          (sessionChange)="onSessionChange($event)"
+        ></app-session-input>
+
+        <!-- Tab: Histórico -->
+        <app-history-list
+          *ngIf="activeTab === 1"
+          [historyList]="historyList"
+          [selectedHistory]="selectedHistory"
+          (selectHistory)="selectHistory($event)"
+        ></app-history-list>
+      </div>
+    </div>
+
+    <!-- Right Panel: Summary -->
+    <app-session-summary
+      [huntData]="huntData"
+      [splittedBalance]="splittedBalance"
+      [isWaste]="isWaste"
+      [activeTab]="activeTab"
+      [selectedHistory]="selectedHistory"
+      [isInvalid]="isInvalid"
+      [copiedSummary]="copiedSummary"
+      [copiedTransfers]="copiedTransfers"
+      (copyText)="onCopyText($event)"
+      (deleteHistory)="deleteHistory()"
+      (saveToHistory)="saveToHistory()"
+    ></app-session-summary>
+  </div>
+</div>

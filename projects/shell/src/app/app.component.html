@@ -1,0 +1,31 @@
+<div class="shell-container">
+  <app-sidebar></app-sidebar>
+
+  <header class="header">
+    <button class="menu-btn" (click)="toggleSidebar()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+    <div class="header-content">
+      <a routerLink="/home" class="header-link">
+        <div class="icon-frame">
+          <img
+            src="assets/Cacau_Icon.png"
+            alt="Cacau Icon"
+            class="header-icon"
+          />
+        </div>
+        <div class="header-text">
+          <h1>Tibia Cacau - Ferramentas</h1>
+          <p class="subtitle">Todas as ferramentas em um só lugar</p>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Router Outlet - Aqui os módulos serão carregados -->
+  <router-outlet></router-outlet>
+
+  <footer class="footer">
+    <p>&copy; 2025 Tibia Cacau - Todas as ferramentas em um só lugar</p>
+  </footer>
+</div>

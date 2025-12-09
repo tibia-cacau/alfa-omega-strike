@@ -1,0 +1,90 @@
+.loot-split-container {
+  padding: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #4b2e05;
+  font-family: "Roboto", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #e8d7b1;
+  margin-bottom: 15px;
+  font-size: 22px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Left Panel: Tabs
+.tabs-panel {
+  flex-shrink: 0;
+  width: 280px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.tabs-header {
+  display: flex;
+  background: rgba(232, 215, 177, 0.95);
+  border-bottom: 2px solid #d9a441;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: #4b2e05;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(217, 164, 65, 0.2);
+  }
+
+  &.active {
+    background: #d9a441;
+    color: #4b2e05;
+  }
+}
+
+.tab-content {
+  padding: 15px;
+  height: 320px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(232, 215, 177, 0.1);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(217, 164, 65, 0.5);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(217, 164, 65, 0.7);
+    }
+  }
+}

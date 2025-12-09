@@ -1,0 +1,66 @@
+[
+  {
+    "id": "home",
+    "label": "Home",
+    "icon": "🏠",
+    "route": "/home"
+  },
+  {
+    "id": "alfa-vs-omega-strike",
+    "label": "Alfa vs Omega Strike",
+    "icon": "⚔️",
+    "route": "/alfa-vs-omega-strike",
+    "children": [
+      {
+        "id": "calculator",
+        "label": "Calculadora",
+        "icon": "🎯",
+        "route": "/alfa-vs-omega-strike"
+      },
+      {
+        "id": "bonus-damage",
+        "label": "Gráfico Dano Bônus",
+        "icon": "📊",
+        "route": "/alfa-vs-omega-strike/bonus-damage"
+      },
+      {
+        "id": "bonus-diff",
+        "label": "Gráfico Diferença",
+        "icon": "📈",
+        "route": "/alfa-vs-omega-strike/bonus-diff"
+      }
+    ]
+  },
+  {
+    "id": "calculators",
+    "label": "Calculadoras",
+    "icon": "🧮",
+    "route": "/calculators",
+    "children": [
+      {
+        "id": "exercise-weapons",
+        "label": "Exercise Weapons",
+        "icon": "⚔️",
+        "route": "/calculators"
+      },
+      {
+        "id": "imbuements",
+        "label": "Imbuements Cost",
+        "icon": "💎",
+        "route": "/calculators/imbuements"
+      }
+    ]
+  },
+  {
+    "id": "loot-split",
+    "label": "Divisão de Loot",
+    "icon": "💰",
+    "route": "/loot-split"
+  },
+  {
+    "id": "weekly-tasks",
+    "label": "Tarefas Semanais",
+    "icon": "📋",
+    "route": "/weekly-tasks"
+  }
+]

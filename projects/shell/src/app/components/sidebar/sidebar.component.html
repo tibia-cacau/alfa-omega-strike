@@ -1,0 +1,46 @@
+<div
+  class="sidebar-overlay"
+  *ngIf="sidebarOpen$ | async"
+  (click)="onOverlayClick()"
+></div>
+
+<aside class="sidebar" [class.open]="sidebarOpen$ | async">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <img src="assets/Cacau_Icon.png" alt="Tibia Cacau" class="logo-icon" />
+      <span class="logo-text">Tibia Cacau</span>
+    </div>
+    <button class="close-btn" (click)="closeSidebar()">✕</button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="menu-list">
+      <ng-container *ngFor="let item of menuItems$ | async">
+        <li
+          class="menu-item"
+          [class.has-children]="item.children && item.children.length > 0"
+        >
+          <div class="menu-item-content" (click)="toggleItem(item)">
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+            <span
+              class="expand-icon"
+              *ngIf="item.children && item.children.length > 0"
+            >
+              {{ item.expanded ? "▼" : "▶" }}
+            </span>
+          </div>
+
+          <ul class="submenu" *ngIf="item.children && item.expanded">
+            <li class="submenu-item" *ngFor="let child of item.children">
+              <div class="menu-item-content" (click)="toggleItem(child)">
+                <span class="menu-icon">{{ child.icon }}</span>
+                <span class="menu-label">{{ child.label }}</span>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+</aside>
