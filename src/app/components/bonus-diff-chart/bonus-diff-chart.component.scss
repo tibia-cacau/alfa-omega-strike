@@ -1,0 +1,86 @@
+@import "../../../../../../shared-styles/variables";
+
+.chart-container {
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: $bg-dark;
+  backdrop-filter: $backdrop-blur;
+  border-radius: 12px;
+  min-height: calc(100vh - 200px);
+
+  h2 {
+    text-align: center;
+    color: $tibia-gold-light;
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-size: $font-size-xxl;
+    text-shadow: $text-shadow;
+  }
+
+  .inputs-section {
+    background: rgba(245, 245, 245, 0.95);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    backdrop-filter: $backdrop-blur;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+
+    .form-group {
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: $gray-medium;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid $border-light;
+        border-radius: 4px;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: $success-green;
+        }
+      }
+    }
+  }
+
+  .chart-wrapper {
+    height: 400px;
+    margin-bottom: 20px;
+    background: $bg-white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    background: $bg-gray-lighter;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid $purple-border;
+
+    p {
+      margin: 10px 0;
+      color: $gray-medium;
+    }
+
+    ul {
+      margin: 10px 0;
+      padding-left: 25px;
+
+      li {
+        margin: 5px 0;
+        color: $gray-medium;
+        color: $gray-medium;
+      }
+    }
+  }
+}

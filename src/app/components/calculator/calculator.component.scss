@@ -1,0 +1,704 @@
+@import "../../../../../../shared-styles/variables";
+
+.calculator-container {
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: $bg-dark;
+  backdrop-filter: $backdrop-blur;
+  border-radius: 12px;
+  min-height: calc(100vh - 200px);
+
+  h2 {
+    text-align: center;
+    color: $tibia-gold-light;
+    margin-bottom: 30px;
+    margin-top: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  // Server Log Section
+  .server-log-section {
+    background: $bg-light;
+    border: $border-gold;
+    border-radius: $border-radius;
+    margin-bottom: 20px;
+    overflow: hidden;
+    backdrop-filter: $backdrop-blur;
+
+    .toggle-btn {
+      width: 100%;
+      padding: 15px 20px;
+      background: $tibia-gold;
+      color: $tibia-brown-dark;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: left;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: $gold-hover;
+      }
+    }
+
+    .server-log-content {
+      padding: 20px;
+
+      .info-text {
+        margin: 0 0 15px 0;
+        color: $gray-medium;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .server-log-textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid $border-light;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: $font-size-xs;
+        resize: vertical;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: $tibia-gold;
+        }
+      }
+
+      .server-log-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+
+        button {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+
+        .btn-secondary {
+          background: $gray-light;
+          color: $gray-dark;
+
+          &:hover:not(:disabled) {
+            background: $gray-hover;
+          }
+        }
+
+        .btn-primary {
+          background: $tibia-gold;
+          color: $tibia-brown-dark;
+
+          &:hover:not(:disabled) {
+            background: $gold-hover;
+          }
+        }
+      }
+
+      .stats-display {
+        background: $bg-white;
+        border: 2px solid $gray-light;
+        border-radius: $border-radius;
+        padding: 20px;
+        margin-top: 20px;
+
+        h4 {
+          margin: 0 0 15px 0;
+          color: $gray-dark;
+        }
+
+        &.warning {
+          background: $warning-yellow-bg;
+          border-color: $warning-yellow;
+
+          p {
+            margin: 0;
+            color: $warning-yellow-dark;
+          }
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 15px;
+
+          .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: $bg-gray-lighter;
+            border-radius: 4px;
+
+            .stat-label {
+              color: $gray-lighter;
+              font-weight: 500;
+            }
+
+            .stat-value {
+              font-weight: bold;
+              color: $gray-dark;
+
+              &.highlight {
+                color: $tibia-green;
+                font-size: $font-size-xl;
+              }
+
+              &.excluded {
+                color: $error-light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .inputs-section {
+    background: $bg-light;
+    padding: 20px;
+    border-radius: $border-radius;
+    border: $border-gold;
+    margin-bottom: 20px;
+    backdrop-filter: $backdrop-blur;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+    .form-group {
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: $tibia-brown-dark;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid $tibia-gold;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background: $bg-white;
+
+        &:focus {
+          outline: none;
+          border-color: $gold-hover;
+        }
+      }
+    }
+  }
+
+  .recommendation-section {
+    padding: 20px;
+    border-radius: $border-radius;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 3px solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    &.omega {
+      background: $omega-red-light;
+      border-color: $omega-red;
+      backdrop-filter: $backdrop-blur;
+    }
+
+    &.alfa {
+      background: $alfa-green-light;
+      border-color: $tibia-green;
+      backdrop-filter: $backdrop-blur;
+    }
+
+    &.empate {
+      background: rgba(254, 245, 231, 0.95);
+      border-color: $tibia-gold;
+      backdrop-filter: $backdrop-blur;
+    }
+
+    .icon-frame {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 76px;
+        height: 76px;
+        background: url("/assets/images/Proficiency_Border.gif") center/contain
+          no-repeat;
+        pointer-events: none;
+        z-index: 2;
+      }
+    }
+
+    .recommendation-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    .recommendation-content {
+      flex: 1;
+      text-align: left;
+    }
+
+    h3 {
+      margin: 0 0 10px 0;
+      color: $gray-dark;
+    }
+
+    .recommendation-text {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  .details-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .result-card {
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid;
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+
+        .icon-frame {
+          position: relative;
+          width: 48px;
+          height: 48px;
+          flex-shrink: 0;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 56px;
+            height: 56px;
+            background: url("/assets/images/Proficiency_Border.gif")
+              center/contain no-repeat;
+            pointer-events: none;
+            z-index: 2;
+          }
+        }
+
+        .card-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 48px;
+          height: 48px;
+          object-fit: contain;
+          z-index: 1;
+        }
+
+        h4 {
+          margin: 0;
+          flex: 1;
+        }
+      }
+
+      .stats {
+        p {
+          margin: 8px 0;
+        }
+      }
+    }
+
+    .alfa-card {
+      background: $alfa-green-light;
+      border-color: $tibia-green;
+      backdrop-filter: $backdrop-blur;
+
+      .card-header h4 {
+        color: $tibia-green;
+      }
+    }
+
+    .omega-card {
+      background: $omega-red-light;
+      border-color: $omega-red;
+      backdrop-filter: $backdrop-blur;
+
+      .card-header h4 {
+        color: $omega-red;
+      }
+    }
+  }
+
+  // Scenarios Section
+  .scenarios-section {
+    background: $scenarios-bg;
+    border: 2px solid $tibia-green;
+    border-radius: $border-radius;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+
+    .toggle-scenarios-btn {
+      width: 100%;
+      padding: 15px 20px;
+      background: $tibia-green;
+      color: $bg-white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: left;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: $green-dark-hover;
+      }
+    }
+
+    .scenarios-content {
+      padding: 20px;
+
+      .scenarios-card {
+        background: $bg-white;
+        border-radius: $border-radius;
+        padding: 20px;
+
+        h4 {
+          color: $tibia-brown-dark;
+          margin: 0 0 20px 0;
+          text-align: center;
+          font-size: 20px;
+        }
+
+        .info-note {
+          background: $warning-yellow-bg;
+          border-left: 4px solid $warning-yellow;
+          padding: 12px 15px;
+          margin-bottom: 25px;
+          border-radius: 4px;
+          font-size: 14px;
+          line-height: 1.6;
+          color: $gray-lighter;
+        }
+
+        .scenario-group {
+          margin-bottom: 30px;
+
+          h5 {
+            color: $gray-dark;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid $gray-light;
+          }
+
+          .scenario-table {
+            background: $bg-gray-lighter;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .table-header {
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              background: $tibia-green;
+              color: $bg-white;
+              padding: 10px;
+              font-weight: bold;
+              text-align: center;
+
+              span {
+                padding: 5px;
+              }
+            }
+
+            .table-row {
+              display: grid;
+              grid-template-columns: repeat(5, 1fr);
+              padding: 10px;
+              border-bottom: 1px solid $gray-light;
+              text-align: center;
+              transition: background 0.2s ease;
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              &:hover {
+                background: $gray-item-hover;
+              }
+
+              span {
+                padding: 5px;
+              }
+
+              &.alfa-winner {
+                background: $alfa-green-table;
+
+                &:hover {
+                  background: $alfa-green-table-hover;
+                }
+              }
+
+              &.omega-winner {
+                background: $omega-red-table;
+
+                &:hover {
+                  background: $omega-red-table-hover;
+                }
+              }
+
+              .highlight-alfa {
+                color: $alfa-green-dark;
+                font-weight: bold;
+              }
+
+              .highlight-omega {
+                color: $omega-red-dark;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .conclusion-box {
+          background: linear-gradient(
+            135deg,
+            $tibia-green 0%,
+            $tibia-brown-dark 100%
+          );
+          border-radius: $border-radius;
+          padding: 25px;
+          color: $bg-white;
+          margin-top: 30px;
+
+          h5 {
+            margin: 0 0 20px 0;
+            text-align: center;
+            font-size: 22px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+          }
+
+          .conclusion-content {
+            .analysis-text {
+              background: $bg-white;
+              color: $gray-dark;
+              border-radius: $border-radius;
+              padding: 20px;
+
+              h6 {
+                color: $tibia-brown-dark;
+                margin: 0 0 15px 0;
+                font-size: $font-size-xl;
+                border-bottom: 2px solid $gray-light;
+                padding-bottom: 8px;
+              }
+
+              p {
+                line-height: 1.6;
+                margin: 12px 0;
+              }
+
+              .comparison-boxes {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                margin: 20px 0;
+
+                .comparison-item {
+                  border-radius: $border-radius;
+                  padding: 15px;
+                  border: 3px solid;
+
+                  strong {
+                    display: block;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                  }
+
+                  ul {
+                    margin: 0;
+                    padding-left: 20px;
+
+                    li {
+                      margin-bottom: 8px;
+                      font-size: 14px;
+                      line-height: 1.5;
+                    }
+                  }
+
+                  &.alfa-item {
+                    background: $alfa-green-table;
+                    border-color: $alfa-green-dark;
+
+                    strong {
+                      color: $alfa-green-dark;
+                    }
+                  }
+
+                  &.omega-item {
+                    background: $omega-red-table;
+                    border-color: $omega-red-dark;
+
+                    strong {
+                      color: $omega-red-dark;
+                    }
+                  }
+                }
+              }
+
+              .verdict-box {
+                background: $verdict-gradient;
+                border-radius: $border-radius;
+                padding: 20px;
+                margin-top: 20px;
+                color: $verdict-green;
+
+                h6 {
+                  color: $verdict-green;
+                  font-size: 20px;
+                  margin: 0 0 15px 0;
+                  text-align: center;
+                  border-bottom: 2px solid rgba(26, 92, 58, 0.3);
+                  padding-bottom: 10px;
+                }
+
+                .decision-table {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  gap: 15px;
+                  margin: 15px 0;
+
+                  .decision-row {
+                    background: rgba(255, 255, 255, 0.7);
+                    border-radius: $border-radius;
+                    padding: 15px;
+
+                    strong {
+                      display: block;
+                      font-size: 16px;
+                      margin-bottom: 10px;
+                      color: $verdict-green;
+                    }
+
+                    ul {
+                      margin: 0;
+                      padding-left: 20px;
+
+                      li {
+                        margin-bottom: 8px;
+                        font-size: 14px;
+                        line-height: 1.5;
+                        color: $gray-dark;
+                      }
+                    }
+                  }
+                }
+
+                p {
+                  margin: 10px 0;
+                  font-size: 15px;
+                  line-height: 1.7;
+
+                  &.recommendation-final {
+                    background: rgba(255, 255, 255, 0.5);
+                    border-left: 4px solid $verdict-green;
+                    padding: 12px;
+                    border-radius: 4px;
+                    margin-top: 15px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator-container {
+    .inputs-section {
+      grid-template-columns: 1fr;
+    }
+
+    .details-section {
+      grid-template-columns: 1fr;
+    }
+
+    .recommendation-section {
+      flex-direction: column;
+
+      .recommendation-content {
+        text-align: center;
+      }
+    }
+
+    .server-log-section .server-log-content .stats-display .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    // Scenarios responsive
+    .scenarios-section .scenarios-content .scenarios-card {
+      .scenario-group .scenario-table {
+        .table-header,
+        .table-row {
+          grid-template-columns: repeat(5, 1fr);
+          font-size: 11px;
+
+          span {
+            padding: 3px 2px;
+          }
+        }
+      }
+
+      .conclusion-box .conclusion-content .analysis-text {
+        .comparison-boxes {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .verdict-box {
+          p {
+            font-size: 13px;
+          }
+
+          .decision-table {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+      }
+    }
+  }
+}
