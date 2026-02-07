@@ -1,24 +1,18 @@
-<div class="app-container">
-  <nav class="tabs">
-    <a
-      routerLink="./"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <span class="tab-icon">🎯</span>
-      Calculadora
-    </a>
-    <a routerLink="./bonus-damage" routerLinkActive="active">
-      <span class="tab-icon">📊</span>
-      Gráfico Dano Bônus
-    </a>
-    <a routerLink="./bonus-diff" routerLinkActive="active">
-      <span class="tab-icon">📈</span>
-      Gráfico Diferença
-    </a>
-  </nav>
+<div class="tibia-container">
+	<div class="tibia-card">
+		<div class="card-header">
+			<h2>
+				<mat-icon>calculate</mat-icon>
+				Alfa vs Omega Strike
+			</h2>
+		</div>
 
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+		<div class="card-content">
+			<app-tibia-tabs [tabs]="tabs"></app-tibia-tabs>
+
+			<main>
+				<router-outlet></router-outlet>
+			</main>
+		</div>
+	</div>
 </div>

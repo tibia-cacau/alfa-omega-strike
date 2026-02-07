@@ -9,17 +9,28 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GraphInterpretationComponent } from './components/graph-interpretation/graph-interpretation.component';
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
+import { TibiaSectionComponent } from '../../../../shared-components/tibia-section/tibia-section.component';
+import { TibiaTabsComponent } from '../../../../shared-components/tibia-tabs/tibia-tabs.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CalculatorComponent,
-    BonusDamageChartComponent,
-    BonusDiffChartComponent,
-    GraphInterpretationComponent,
-  ],
-  imports: [CommonModule, AppRoutingModule, FormsModule, BaseChartDirective],
-  providers: [provideCharts(withDefaultRegisterables())],
+	declarations: [
+		AppComponent,
+		CalculatorComponent,
+		BonusDamageChartComponent,
+		BonusDiffChartComponent,
+		GraphInterpretationComponent,
+	],
+	imports: [
+		CommonModule,
+		AppRoutingModule,
+		FormsModule,
+		BaseChartDirective,
+		MatIconModule,
+		TibiaTabsComponent,
+		TibiaSectionComponent,
+	],
+	providers: [provideCharts(withDefaultRegisterables())],
 })
 export class AppModule {}

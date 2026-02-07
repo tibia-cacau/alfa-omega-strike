@@ -1,62 +1,74 @@
 <div class="interpretation-section">
-  <button class="toggle-interpretation-btn" (click)="toggleInterpretation()">
-    {{ showInterpretation ? "▼" : "▶" }} 📊 Como interpretar a variação nos
-    Gráficos
-  </button>
+	<button
+		class="toggle-interpretation-btn"
+		(click)="toggleInterpretation()"
+	>
+		{{ showInterpretation ? '▼' : '▶' }} 📊 Como interpretar a variação nos
+		Gráficos
+	</button>
 
-  <div class="interpretation-content" *ngIf="showInterpretation">
-    <div class="interpretation-card">
-      <h4>🔍 Por que o Ômega Strike tem "dentes de serra"?</h4>
-      <p>
-        Os picos e quedas no gráfico do Ômega Strike acontecem por causa de como
-        o bônus é ativado:
-      </p>
-      <ul>
-        <li><strong>Ômega Strike:</strong> Bônus ativa quando HP < 30%</li>
-        <li>
-          Conforme o HP do monstro aumenta, o <strong>momento exato</strong> em
-          que o bônus ativa muda
-        </li>
-        <li>
-          Como o dano base é fixo, o
-          <strong>número de hits COM bônus</strong> varia ligeiramente
-        </li>
-      </ul>
+	<div
+		class="interpretation-content"
+		*ngIf="showInterpretation"
+	>
+		<div class="interpretation-card">
+			<h4>🔍 Por que o Ômega Strike tem "dentes de serra"?</h4>
+			<p>
+				Os picos e quedas no gráfico do Ômega Strike acontecem por causa
+				de como o bônus é ativado:
+			</p>
+			<ul>
+				<li>
+					<strong>Ômega Strike:</strong> Bônus ativa quando HP < 30%
+				</li>
+				<li>
+					Conforme o HP do monstro aumenta, o
+					<strong>momento exato</strong> em que o bônus ativa muda
+				</li>
+				<li>
+					Como o dano base é fixo, o
+					<strong>número de hits COM bônus</strong> varia ligeiramente
+				</li>
+			</ul>
 
-      <div class="example-box">
-        <p class="example-title">📝 Exemplo Prático (Dano: 400):</p>
-        <div class="example-content">
-          <div class="example-item">
-            <strong>Monstro com 10.000 HP:</strong>
-            <br />• Bônus ativa em 3.000 HP (30%) <br />• ~17 hits SEM bônus → 8
-            hits COM bônus
-          </div>
-          <div class="example-item">
-            <strong>Monstro com 10.500 HP:</strong>
-            <br />• Bônus ativa em 3.150 HP (30%) <br />• ~18 hits SEM bônus → 8
-            hits COM bônus
-          </div>
-        </div>
-        <p class="example-conclusion">
-          ✅ Essa diferença de
-          <strong>1 hit a mais ou a menos COM bônus</strong> causa os "dentes de
-          serra"
-        </p>
-      </div>
+			<div class="example-box">
+				<p class="example-title">📝 Exemplo Prático (Dano: 400):</p>
+				<div class="example-content">
+					<div class="example-item">
+						<strong>Monstro com 10.000 HP:</strong>
+						<br />• Bônus ativa em 3.000 HP (30%) <br />• ~17 hits
+						SEM bônus → 8 hits COM bônus
+					</div>
+					<div class="example-item">
+						<strong>Monstro com 10.500 HP:</strong>
+						<br />• Bônus ativa em 3.150 HP (30%) <br />• ~18 hits
+						SEM bônus → 8 hits COM bônus
+					</div>
+				</div>
+				<p class="example-conclusion">
+					✅ Essa diferença de
+					<strong>1 hit a mais ou a menos COM bônus</strong> causa os
+					"dentes de serra"
+				</p>
+			</div>
 
-      <div class="info-box">
-        <strong>💡 Por que o Alfa Strike é "liso"?</strong>
-        <p>
-          Porque o Alfa Strike ativa quando HP > 95%, ou seja,
-          <strong>logo no começo da luta</strong>. Assim, sempre dá quase o
-          mesmo número de hits com bônus, independente do HP total do monstro.
-        </p>
-      </div>
+			<app-tibia-section
+				variant="highlight"
+				icon="💡"
+				title="Por que o Alfa Strike é 'liso'?"
+			>
+				<p>
+					Porque o Alfa Strike ativa quando HP > 95%, ou seja,
+					<strong>logo no começo da luta</strong>. Assim, sempre dá
+					quase o mesmo número de hits com bônus, independente do HP
+					total do monstro.
+				</p>
+			</app-tibia-section>
 
-      <p class="conclusion">
-        🎯 <strong>Conclusão:</strong> O gráfico está matematicamente correto!
-        Isso mostra exatamente como funciona no jogo real.
-      </p>
-    </div>
-  </div>
+			<p class="conclusion">
+				🎯 <strong>Conclusão:</strong> O gráfico está matematicamente
+				correto! Isso mostra exatamente como funciona no jogo real.
+			</p>
+		</div>
+	</div>
 </div>
